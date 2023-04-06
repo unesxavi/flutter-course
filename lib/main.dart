@@ -52,7 +52,7 @@ class FacebookApp extends StatelessWidget {
               color: Color.fromARGB(255, 54, 84, 220),
               size: 30
             ),
-            onPressed: () {},
+            onPressed: () { },
           ),
           IconButton(
             icon: const Icon(
@@ -60,7 +60,7 @@ class FacebookApp extends StatelessWidget {
               color: Color.fromARGB(255, 54, 84, 220),
               size: 30
             ),
-            onPressed: () {},
+            onPressed: () { },
           ),
         ]
         
