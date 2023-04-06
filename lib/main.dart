@@ -1,36 +1,24 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
+// This widget is the root
+// of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: FacebookApp(),
-    );
+    return MaterialApp(
+        title: "ListView.builder",
+        theme: ThemeData(primarySwatch: Colors.green),
+        debugShowCheckedModeBanner: false,
+        // home : new ListViewBuilder(), NO Need To Use Unnecessary New Keyword
+        home: const ListViewBuilder());
   }
 }
 
-class FacebookApp extends StatelessWidget {
-  const FacebookApp({super.key});
-
-  Widget _buildDecoratedImage() => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.star, color: Colors.green[500]),
-          const SizedBox(width: 20),
-          Icon(Icons.star, color: Colors.green[500]),
-          Icon(Icons.star, color: Colors.green[500]),
-          const Icon(Icons.star, color: Colors.black),
-          const Icon(Icons.star, color: Colors.black),
-          const Icon(Icons.star, color: Colors.black),
-        ],
-      );
+class ListViewBuilder extends StatelessWidget {
+  const ListViewBuilder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,27 +54,25 @@ class FacebookApp extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         child: const Icon(Icons.add),
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(15),
-            // width: double.infinity,
-            child: const Image(
-              height: 300,
-              width: 300,
-              fit: BoxFit.fitWidth,
-              image: AssetImage('assets/images/pic1.jpeg'),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(2),
-            child: const Text(
-              "Product Name",
-              style: TextStyle(fontSize: 22),
-            ),
-          ),
-        ],
-      ),
+      body: ListView.builder(
+          padding: const EdgeInsets.only(top: 20),
+          itemExtent: 80.0,
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              leading: const Image(
+                height: 150,
+                // width: 200,
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/images/pic1.jpeg'),
+              ),
+              trailing: const Text(
+                "Add to cart",
+                style: TextStyle(color: Colors.green, fontSize: 15),
+              ),
+              title: Text('Product Name ${index + 1}'),
+            );
+          }),
     );
   }
 }
