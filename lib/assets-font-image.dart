@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 void main() => runApp(const MyApp());
 
@@ -67,24 +66,46 @@ class ListViewBuilder extends StatelessWidget {
               fontWeight: FontWeight.w900,
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            margin: const EdgeInsets.all(40),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.blue,
-                width: 9,
+          CircleAvatar(
+            // backgroundImage: AssetImage('assets/images/product-4.jpg'),
+            radius: 133,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/product-1.jpg',
               ),
-              shape: BoxShape.circle,
             ),
-            child: SvgPicture.asset(
-              'assets/images/t-shirt.svg',
-              colorFilter:
-                  const ColorFilter.mode(Colors.blueGrey, BlendMode.srcIn),
-              matchTextDirection: true,
-              width: 300,
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(80),
+            child: Image.network(
+              'https://tehranyekta.co/Portals/0/articleimages/default13804.jpg',
+              fit: BoxFit.cover,
+              // height: 550,
+              // width: 550,
+              loadingBuilder: (context, child, progress) {
+                return progress == null
+                    ? child
+                    : Container(
+                        margin: const EdgeInsets.all(20),
+                        child: const CircularProgressIndicator(),
+                      );
+              },
             ),
-          )
+          ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(80),
+          //   child: Image.asset(
+          //     'assets/images/product-1.jpg',
+          //     fit: BoxFit.cover,
+          //     height: 550,
+          //     width: 550,
+          // loadingBuilder: (context, child, progress) {
+          //       return progress == null
+          //           ? child
+          //           : const CircularProgressIndicator();
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );
